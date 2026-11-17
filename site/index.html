@@ -251,7 +251,9 @@
     if (aud && p.audiences.indexOf(aud) === -1) return false;
     if (gr && (p.audiences.indexOf('K-12 teachers') === -1 || (p.grades.length && p.grades.indexOf(gr) === -1))) return false;
     if (cr && (!p.audiences.some(function (a) { return COLLEGE.indexOf(a) !== -1; }) || (p.career.length && p.career.indexOf(cr) === -1))) return false;
-    if (dsc && !p.all_fields && p.disciplines.indexOf(dsc) === -1) return false;
+    // Listings open to all STEM+ fields show under every discipline except named-only ones (STEAM: Arts+STEM).
+    var general = p.all_fields && (state.d.named_only || []).indexOf(dsc) === -1;
+    if (dsc && !general && p.disciplines.indexOf(dsc) === -1) return false;
     if (ty && p.type !== ty) return false;
     if (co && p.cost !== co) return false;
     if (st && p.sponsor_type !== st) return false;
