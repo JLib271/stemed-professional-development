@@ -1,0 +1,70 @@
+name: Suggest a program
+description: National professional development for K-12 teachers, informal educators, college faculty and instructors, or graduate students and postdocs, run by a society, a US federal agency, the Smithsonian, or a national foundation.
+title: "Add: "
+labels: ["add program"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! We list national professional development in STEM+ fields for K-12 teachers, informal educators,
+        college and university faculty and instructors, and graduate students and postdocs preparing to teach. Each
+        program is run by a national scholarly or professional society or association, a US federal agency, a national
+        program with federal agency funds, the Smithsonian, or a national private foundation or nonprofit, and is open
+        to people from many schools or institutions. **State, regional, and district programs are not listed**, and
+        neither are programs a single campus runs for its own people, university courses, or company programs. If we
+        are not sure a program meets this rule, we leave it out. A maintainer checks the provider's pages before listing it.
+  - type: input
+    id: name
+    attributes: {label: "Program name", placeholder: "e.g. NOAA Teacher at Sea, or MAA Project NExT"}
+    validations: {required: true}
+  - type: input
+    id: provider
+    attributes: {label: "Society, association, or agency that runs or funds it", placeholder: "e.g. NOAA Fisheries"}
+    validations: {required: true}
+  - type: dropdown
+    id: sponsor_type
+    attributes:
+      label: Run or funded by
+      options: ["US society", "International society", "US federal agency", "Federally funded program", "Smithsonian Institution", "Private foundation or nonprofit"]
+    validations: {required: true}
+  - type: input
+    id: url
+    attributes: {label: "Link to the provider's own page about the program", description: "This is how we check who runs it."}
+    validations: {required: true}
+  - type: checkboxes
+    id: audiences
+    attributes:
+      label: Who it is for
+      options:
+        - label: K-12 teachers
+        - label: Informal educators (museums, zoos, aquariums, parks, nature centers, libraries, after-school, outreach)
+        - label: College and university faculty and instructors (including lecturers, adjuncts, two-year college faculty)
+        - label: Graduate students and postdocs preparing to teach
+  - type: input
+    id: grades
+    attributes: {label: "For K-12 teachers: grade bands, if limited", placeholder: "e.g. grades 6-12"}
+  - type: input
+    id: career
+    attributes: {label: "For college faculty, graduate students, or postdocs: career stage, if limited", placeholder: "e.g. new faculty; department chairs"}
+  - type: dropdown
+    id: type
+    attributes:
+      label: Kind of program
+      options: ["Research experience", "Field, ship, or park experience", "Fellowship or cohort program", "Workshop or institute", "Online course", "Webinar series", "Mentoring network or community of practice", "Coaching or mentoring", "Certificate or certification training", "Workshop for your department or campus", "Teaching postdoc or teaching fellowship"]
+    validations: {required: true}
+  - type: input
+    id: cost
+    attributes: {label: "Cost, stipend, or support", placeholder: "e.g. free, $100 stipend, $600 fee"}
+  - type: input
+    id: deadline
+    attributes: {label: "Next application deadline, if announced", placeholder: "YYYY-MM-DD, or 'usually in March'"}
+  - type: input
+    id: schedule
+    attributes: {label: "When it runs", placeholder: "e.g. six weeks every summer; webinars monthly"}
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Scope check
+      options:
+        - label: It is a national program (not a state, regional, or district one), and the society, association, or agency named above runs or funds it, as its own pages show.
+          required: true
