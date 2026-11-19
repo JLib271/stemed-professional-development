@@ -121,7 +121,7 @@
       <a class="btn" href="#open-now" id="openbtn">Open for applications</a>
       <a class="btn secondary" href="#calendar">Deadline calendar</a>
       <a class="btn secondary" href="feeds/new.xml">New listings (RSS)</a>
-      <a class="btn secondary" id="suggest" href="#">Suggest a program</a>
+      <a class="btn secondary" id="suggest" href="#add">Suggest a program</a>
     </div>
     <div class="scope" role="note" id="scope">
       <p><strong>What is listed:</strong> national programs for K-12 teachers; for informal educators (museums, zoos, aquariums, parks, nature centers, libraries, after-school, and outreach); for college and university faculty and instructors, including lecturers, adjuncts, and two-year college faculty; and for graduate students and postdocs preparing to teach. Each is run by a national society or association, a US federal agency, a national program with federal agency funds, the Smithsonian, or a national private foundation or nonprofit, and is open to people from many schools or institutions.</p>
@@ -172,7 +172,7 @@
     <p><strong>State, regional, and district professional development is not included.</strong> That covers state education agencies, state teacher associations and their chapters, regional service centers, district programs, and state programs of national networks (for example, state Ag in the Classroom programs or MAA section NExT programs). <strong>Neither are programs a single campus runs for its own people</strong>, university courses and degrees, or programs run by companies. Teaching conferences are on STEMEd+ Conferences.</p>
     <p>This list combines the former STEMEd+ Professional Learning (K-12 and informal educators) and STEMEd+ Faculty Development (college faculty, instructors, graduate students, and postdocs) lists.</p>
     <p>Disciplines use the same categories as STEMEd+ Jobs, Funding, Conferences, the STEMEd+ Digest, and the Graduate Programs list; computer science is under Engineering and statistics under Mathematics. Programs open to all STEM+ fields appear under every discipline. Programs for all of K-12 appear under every grade band, and programs open to any career stage appear under every stage.</p>
-    <h2>Add or correct a listing</h2>
+    <h2 id="add">Add or correct a listing</h2>
     <p>Know a national program we are missing, or see something out of date? <a id="suggest2" href="#">Suggest a program</a> or <a id="update" href="#">report a correction</a> on GitHub, or <a id="mail" href="#">email the maintainer</a>.</p>
     <h2>RSS</h2>
     <p><a href="feeds/new.xml">Newly listed programs</a>, for feed readers.</p>
@@ -415,7 +415,7 @@
       b.addEventListener('click', function () { el('audience').value = b.dataset.aud; changed(); });
     });
     el('openbtn').addEventListener('click', function () { el('open').checked = true; changed(); });
-    ['suggest', 'suggest2'].forEach(function (id) { el(id).href = issueUrl('suggest_program.yml'); ext(el(id)); });
+    el('suggest2').href = issueUrl('suggest_program.yml'); ext(el('suggest2'));
     el('update').href = issueUrl('update_program.yml'); ext(el('update'));
     el('mail').href = 'mailto:' + MAINTAINER + '?subject=' + encodeURIComponent('STEMEd+ Professional Development: new or corrected listing') +
       '&body=' + encodeURIComponent('Program name:\nNational society, association, or federal agency that runs or funds it:\nLink to the program page:\nWho it is for (K-12 teachers and grades, informal educators, faculty and instructors, graduate students and postdocs; career stage):\nNext application deadline (if known):\nCost or stipend:\nCorrection (if this is about an existing listing):\n');
@@ -436,6 +436,7 @@
     el('more').addEventListener('click', function () { state.shown += PAGE; render(); });
     el('share').addEventListener('click', function () { navigator.clipboard && navigator.clipboard.writeText(location.href); el('share').textContent = 'Link copied'; });
     render();
+    if (location.hash === '#add') el('add').scrollIntoView();
   }
 
   fetch('programs.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(init).catch(function () {
